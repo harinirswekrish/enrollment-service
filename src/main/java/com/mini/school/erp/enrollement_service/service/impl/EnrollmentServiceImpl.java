@@ -22,6 +22,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Override
     public EnrollmentResponse enrollStudent(EnrollmentCreateRequest request) {
+
         return enrollmentRepository.findByStudentIdAndCourseId(request.getStudentId(), request.getCourseId())
                 .map(existing -> {
                     if (AppConstant.ACTIVE.equals(existing.getStatus())) {

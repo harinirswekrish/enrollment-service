@@ -15,6 +15,8 @@ public class BusinessValidation {
 
     public Enrollment validateEnrollmentExists(Long studentId, Long courseId) {
         return enrollmentRepository.findByStudentIdAndCourseId(studentId, courseId)
-                .orElseThrow(() -> new BusinessValidationException(ErrorMessages.ENROLLMENT_NOT_FOUND + studentId + ErrorMessages.COURSE_ID + courseId));
+                .orElseThrow(() -> new BusinessValidationException(
+                        ErrorMessages.ENROLLMENT_NOT_FOUND + studentId + ErrorMessages.COURSE_ID + courseId));
     }
+
 }

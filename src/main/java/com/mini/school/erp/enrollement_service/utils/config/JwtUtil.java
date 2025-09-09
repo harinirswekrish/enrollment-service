@@ -17,17 +17,12 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
-    public boolean validateToken(String token) {
-        return !isTokenExpired(token);
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
     }
-
 
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
-    }
-
-    public boolean isTokenExpired(String token) {
-        return extractAllClaims(token).getExpiration().before(new Date());
     }
 
     Claims extractAllClaims(String token) {
